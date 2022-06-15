@@ -78,12 +78,12 @@ pub extern "C" fn create_u64(source: *mut libc::c_ulong) -> Box<u64> {
 }
 
 #[no_mangle]
-pub extern "C" fn create_ulong_from_usize(source: Box<usize>) -> *mut libc::c_ulong {
-    (*source) as *mut libc::c_ulong
+pub extern "C" fn create_size_from_usize(source: Box<usize>) -> *mut libc::size_t {
+    (*source) as *mut libc::size_t
 }
 
 #[no_mangle]
-pub extern "C" fn create_usize(source: *mut libc::c_ulong) -> Box<usize> {
+pub extern "C" fn create_usize(source: *mut libc::size_t) -> Box<usize> {
     Box::new(source as usize)
 }
 
@@ -128,11 +128,11 @@ pub extern "C" fn create_i64(source: *mut libc::c_long) -> Box<i64> {
 }
 
 #[no_mangle]
-pub extern "C" fn create_long_from_isize(source: Box<isize>) -> *mut libc::c_long {
-    (*source) as *mut libc::c_long
+pub extern "C" fn create_ssize_from_isize(source: Box<isize>) -> *mut libc::ssize_t {
+    (*source) as *mut libc::ssize_t
 }
 
 #[no_mangle]
-pub extern "C" fn create_isize(source: *mut libc::c_long) -> Box<isize> {
+pub extern "C" fn create_isize(source: *mut libc::ssize_t) -> Box<isize> {
     Box::new(source as isize)
 }
