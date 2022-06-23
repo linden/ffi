@@ -1,5 +1,6 @@
 #![feature(core_c_str)]
 
+use std::slice;
 use std::ffi::CString;
 use core::ffi::{CStr};
 
@@ -135,4 +136,54 @@ pub extern "C" fn create_ssize_from_isize(source: Box<isize>) -> *mut libc::ssiz
 #[no_mangle]
 pub extern "C" fn create_isize(source: *mut libc::ssize_t) -> Box<isize> {
     Box::new(source as isize)
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_u8_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [u8]> {
+    Box::new(slice::from_raw_parts(source as *const u8, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_u16_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [u16]> {
+    Box::new(slice::from_raw_parts(source as *const u16, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_u32_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [u32]> {
+    Box::new(slice::from_raw_parts(source as *const u32, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_u64_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [u64]> {
+    Box::new(slice::from_raw_parts(source as *const u64, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_usize_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [usize]> {
+    Box::new(slice::from_raw_parts(source as *const usize, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_i8_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [i8]> {
+    Box::new(slice::from_raw_parts(source as *const i8, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_i16_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [i16]> {
+    Box::new(slice::from_raw_parts(source as *const i16, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_i32_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [i32]> {
+    Box::new(slice::from_raw_parts(source as *const i32, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_i64_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [i64]> {
+    Box::new(slice::from_raw_parts(source as *const i64, size as usize))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn create_isize_array(source: *const libc::c_uint, size: libc::size_t) -> Box<&'static [isize]> {
+    Box::new(slice::from_raw_parts(source as *const isize, size as usize))
 }
